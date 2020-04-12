@@ -1,7 +1,8 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { DashboardModule } from './dashboard';
+import { DashboardModule, DashboardComponent } from './dashboard';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -13,6 +14,9 @@ import { AppComponent } from './app.component';
     DashboardModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    DashboardComponent
+  ]
 })
 export class AppModule { }

@@ -25,8 +25,11 @@ export class DashboardComponent implements OnInit {
 
   init(): void {
     if (typeof(google) !== 'undefined') {
-      google.charts.load('current', { package: ['corecharts'] });
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', { packages: ['corechart'] });
+
       setTimeout(() => {
+        // Set a callback to run when the Google Visualization API is loaded.
         google.charts.setOnLoadCallback(this.exibirGraficos());
       }, 1000);
     }
@@ -51,10 +54,9 @@ export class DashboardComponent implements OnInit {
    * @return void
    */
   exibirPieChart(): void {
-    const el = document.getElementById('pir_chart');
-    // const chart = new google.visualization.PieChart(el);
-
-    // chart.draw(this.obterDataTable(), this.obterOpcoes());
+    const el = document.getElementById('pie_chart');
+    const chart = new google.visualization.PieChart(el);
+    chart.draw(this.obterDataTable(), this.obterOpcoes());
   }
 
   /**
@@ -95,6 +97,36 @@ export class DashboardComponent implements OnInit {
    */
   exibirDonutChart(): void {
 
+  }
+
+  /**
+   * Cria e retorna o objeto DataTable da API de gráficos,
+   * responsável por definir os dados do gráfico.
+   *
+   * @return any
+   */
+  obterDataTable(): any {
+    const data = new google.visualization.DataTable();
+
+    data.addColumn('string', 'Mês');
+    data.addColumn('number', 'Quantidade');
+    data.addRows(this.dados);
+
+    return data;
+  }
+
+  /**
+   * Retorna as opções do gráfico, que incluem o título
+   * e tamanho do gráfico.
+   *
+   * @return any
+   */
+  obterOpcoes(): any {
+    return {
+      title: 'Quantidade de cadastros primeiro semestre',
+      width: 400,
+      height: 300
+    };
   }
 
 }

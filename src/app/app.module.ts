@@ -1,8 +1,7 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { DashboardModule, DashboardComponent } from './dashboard';
+import { DashboardModule, DashboardComponent, DadosService } from './dashboard';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -13,7 +12,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     DashboardModule
   ],
-  providers: [],
+  providers: [
+    DadosService
+  ],
   bootstrap: [
     AppComponent,
     DashboardComponent
